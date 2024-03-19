@@ -230,13 +230,14 @@ function poblarSelectActividades(){
 }
 
 function poblarSelectTipoRegistro(etapa){
-    if (etapa >= 1 && etapa <= 4){
+    if (etapa >= 1 && etapa <= 5){
         selectEtapa.innerHTML = ""
         selectEtapa.innerHTML += `
             <option value="1">Planificación</option>
             <option value="2">Ejecución</option>
             <option value="3">Comunicación</option>
             <option value="4">Revisión de calidad QA</option>
+            <option value="5">Supervisión</option>
         `
     }else if(etapa == 0){
         selectEtapa.innerHTML = ""
@@ -262,6 +263,7 @@ selectActividad.addEventListener('change',(e)=> {
             <option value="2">Ejecución</option>
             <option value="3">Comunicación</option>
             <option value="4">Revisión de calidad QA</option>
+            <option value="5">Supervisión</option>
         `
     }else if(tipoAct == "general"){
         selectEtapa.innerHTML = ""
