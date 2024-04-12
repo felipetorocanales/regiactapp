@@ -97,7 +97,7 @@ function poblarTablaRegistrosPorMail(mail){
         onGetRegistros((querySnapshot) => {
             
             listaRegistros.innerHTML = ''
-            const etapas = ["General","Planificación","Ejecución","Comunicación","Revisión de calidad QA"]
+            const etapas = ["General","Planificación","Ejecución","Comunicación","Revisión de calidad QA","Supervisión"]
             querySnapshot.forEach(async (doc) => {
                 if(doc.data().userEmail == mail){
                     const registro = doc.data()
