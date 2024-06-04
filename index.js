@@ -157,7 +157,7 @@ function poblarTablaRegistros(){
     onGetRegistros((querySnapshot) => {
         
         listaRegistros.innerHTML = ''
-        const etapas = ["General","Planificación","Ejecución","Comunicación","Revisión de calidad QA"]
+        const etapas = ["General","Planificación","Ejecución","Comunicación","Revisión de calidad QA","Supervisión"]
         querySnapshot.forEach(async (doc) => {
             const registro = doc.data()
             
