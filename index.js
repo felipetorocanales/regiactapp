@@ -17,6 +17,7 @@ const alertPlaceholder = document.getElementById('liveAlertPlaceholder')
 const adminLinks = document.querySelectorAll('.admin')
 const tablaRegistros = document.getElementById('tablaRegistros')
 
+
 const btnsEditReg = document.querySelector('.btns-edit-reg')
 const btnsSaveReg = document.querySelector('.btns-save-reg')
 
@@ -49,6 +50,7 @@ auth.onAuthStateChanged(async (user) => {
 
         //poblarSelectActividades()
         poblarTablaRegistrosPorMail(userEmail)
+        //sumarHoras()
     }else{
         loggedOutLinks.forEach(link => link.style.display = 'block')
         loggedInLinks.forEach(link => link.style.display = 'none')
@@ -95,9 +97,9 @@ window.addEventListener('DOMContentLoaded', async() => {
 function poblarTablaRegistrosPorMail(mail){
     if(mail){
         onGetRegistros((querySnapshot) => {
-            
             listaRegistros.innerHTML = ''
             const etapas = ["General","Planificación","Ejecución","Comunicación","Revisión de calidad QA","Supervisión"]
+            let sumaHoras = 0;
             querySnapshot.forEach(async (doc) => {
                 if(doc.data().userEmail == mail){
                     const registro = doc.data()
@@ -116,6 +118,8 @@ function poblarTablaRegistrosPorMail(mail){
                             <button class="btn btn-danger btn-deleteReg" data-id="${doc.id}">Eliminar</button></td>   
                         </tr>
                     `
+                    sumaHoras += parseInt(registro.horas)
+                    renderSumarHoras(sumaHoras)
                 } 
             })
 
@@ -393,6 +397,29 @@ function quitarAcentos(cadena){
 	const acentos = {'á':'a','é':'e','í':'i','ó':'o','ú':'u','Á':'A','É':'E','Í':'I','Ó':'O','Ú':'U'};
 	return cadena.split('').map( letra => acentos[letra] || letra).join('').toString();	
 }
+
+
+function renderSumarHoras(sumaHoras){
+
+            document.getElementById("suma-horas").innerHTML = 
+            `<table class="table">
+                <thead>
+                    <tr>
+                    <th scope="col">Suma de horas</th>
+                    <th scope="col">Horas</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>null</td>
+                        <td>${sumaHoras}</td>
+                    </tr>
+                </tbody>
+            </table>`;
+    
+    
+}
+
 
  
 

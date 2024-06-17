@@ -42,7 +42,7 @@ export const guardarActi = (objActividad) => addDoc(collection(db, 'actividades'
 
 export const registrarHora = (objRegistro) => addDoc(collection(db, 'registros'),objRegistro)
 
-export const onGetRegistros = (callback) => onSnapshot(query(collection(db,'registros'), where("creado",">",new Date(2024,1,1)),orderBy("creado","desc")),callback)
+export const onGetRegistros = (callback) => onSnapshot(query(collection(db,'registros'), orderBy("fechaIni","desc")),callback)
 
 export const onGetRegistrosUsuario = (callback) => onSnapshot(query(collection(db,'registros'), where("userEmail","==","ftoro@servipag.cl"), orderBy("modificado","desc")),callback)
 
